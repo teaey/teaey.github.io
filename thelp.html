@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>thelp</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+    <link href="http://cdn.bootcss.com/normalize/5.0.0/normalize.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-3">
+                <input id="ipAddr" type="text" class="form-control" placeholder="目标电脑IP">
+            </div>
+            <div class="col-md-3">
+                <button id="connect" type="button" class="btn btn-default">连接</button>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        function isIP(strIP) {
+            if ("" == strIP) return false;
+            var re = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/g //匹配IP地址的正则表达式
+            if (re.test(strIP)) {
+                if (RegExp.$1 < 256 && RegExp.$2 < 256 && RegExp.$3 < 256 && RegExp.$4 < 256) return true;
+            }
+            return false;
+        };
+        $("#connect").click(function() {
+            var ip = $("#ipAddr").val();
+            var valid = isIP(ip);
+            if(!valid) {
+                alert("IP地址格式不正确")
+                return;
+            }
+            window.open('http://' + ip + ":8888");
+
+        });
+    </script>
+</body>
+
+</html>
